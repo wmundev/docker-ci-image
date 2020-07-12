@@ -7,4 +7,4 @@ docker images - to get the image id
 
 docker tag {imageId} wilsonm/did:aws
 
-docker push wilsonm/did
+docker push wilsonm/did:aws

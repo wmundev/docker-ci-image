@@ -1,4 +1,4 @@
-FROM docker:19.03
+FROM docker:19.03.12
 
 RUN apk add --update curl unzip
 
