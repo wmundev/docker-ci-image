@@ -1,7 +1,6 @@
-FROM node:lts-slim
+FROM docker:19.03
 
-RUN apt-get update -y
-RUN apt-get install -y openssh-client git curl unzip
+RUN apt-get install -y curl unzip
 
 # Install AWS CLI
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
