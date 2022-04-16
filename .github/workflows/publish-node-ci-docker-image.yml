@@ -17,8 +17,9 @@ jobs:
         export REPOSITORY_NAME=wilsonm/node-ci
         export TAG=latest
         docker build --tag ${REPOSITORY_NAME}:latest -f node-ci/Dockerfile .
-        docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+        echo "$DOCKER_PASSWORD" | docker login -u="${DOCKER_USERNAME}" --password-stdin
         docker push ${REPOSITORY_NAME}:${TAG}
+        docker logout
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
