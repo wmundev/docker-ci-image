@@ -1,9 +1,7 @@
-name: Docker Image CI
+name: Publish github-cli docker image
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 jobs:
@@ -20,7 +18,6 @@ jobs:
         export TAG=latest
         docker build --tag ${REPOSITORY_NAME}:${TAG} -f github-cli-docker/Dockerfile .
         docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
-        docker scan ${REPOSITORY_NAME}:${TAG}
         docker push ${REPOSITORY_NAME}:${TAG}
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}

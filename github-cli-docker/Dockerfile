@@ -1,13 +1,16 @@
-FROM alpine/git:v2.32.0
+# To use gh cli, use `gh`
+# To use aws cli, use `aws`
+# To use git, use `git`
+FROM alpine:3
 
-ENV GITHUB_CLI_VERSION=2.7.0
+RUN apk add git
 
-RUN mkdir /ghcli
-WORKDIR /ghcli
+RUN mkdir /app
+WORKDIR /app
 
 # Install github cli
-RUN wget https://github.com/cli/cli/releases/download/v${GITHUB_CLI_VERSION}/gh_${GITHUB_CLI_VERSION}_linux_386.tar.gz -O ghcli.tar.gz
-RUN tar --strip-components=1 -xf ghcli.tar.gz
+RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN apk add github-cli@community
 
 # Install aws cli
 ENV GLIBC_VER=2.31-r0
@@ -43,6 +46,5 @@ RUN apk --no-cache add \
 
 
 RUN aws --version   # Just to make sure its installed alright
-RUN bin/gh
-
-ENTRYPOINT ["bin/gh"]
+RUN gh
+ENTRYPOINT ["/bin/sh", "-c"]

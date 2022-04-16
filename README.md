@@ -10,6 +10,10 @@ docker push ${REPOSITORY_NAME}
 ```
 
 For wilsonm/github-cli
+if powershell first command is 
+```
+$env:REPOSITORY_NAME = 'wilsonm/github-cli';
+```
 ```
 export REPOSITORY_NAME=wilsonm/github-cli
 docker login --username=wilsonm
