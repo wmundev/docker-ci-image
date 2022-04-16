@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and publish github-cli
+      run: |
+        export REPOSITORY_NAME=wilsonm/github-cli
+        export TAG=latest
+        docker build --tag ${REPOSITORY_NAME}:${TAG} -f github-cli-docker/Dockerfile .
+        docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+        docker scan ${REPOSITORY_NAME}:${TAG}
+        docker push ${REPOSITORY_NAME}:${TAG}
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
