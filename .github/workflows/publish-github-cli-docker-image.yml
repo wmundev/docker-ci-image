@@ -3,6 +3,8 @@ name: Publish github-cli docker image
 on:
   push:
     branches: [ master ]
+  schedule:
+    - cron: '0 8 * * 6'
 
 jobs:
 
