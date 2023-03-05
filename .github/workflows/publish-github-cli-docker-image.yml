@@ -8,13 +8,10 @@ on:
   workflow_dispatch:
 
 env:
-  GH_CLI_DOCKER_TAG: latest
   REPOSITORY_NAME: wilsonm/github-cli
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:

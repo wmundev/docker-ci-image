@@ -7,21 +7,20 @@ on:
     - cron: '0 8 * * 6'
   workflow_dispatch:
 
+env:
+  REPOSITORY_NAME: wilsonm/github-cli
+
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Build and publish wilsonm/node-ci
       run: |
-        export REPOSITORY_NAME=wilsonm/node-ci
-        export TAG=latest
-        docker build --tag ${REPOSITORY_NAME}:latest -f node-ci/Dockerfile .
+        docker build --tag ${REPOSITORY_NAME}:${NODE_CI_DOCKER_TAG} -f node-ci/Dockerfile .
         echo "$DOCKER_PASSWORD" | docker login -u="${DOCKER_USERNAME}" --password-stdin
-        docker push ${REPOSITORY_NAME}:${TAG}
+        docker push ${REPOSITORY_NAME}:${NODE_CI_DOCKER_TAG}
         docker logout
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
