@@ -9,6 +9,7 @@ on:
 
 env:
   REPOSITORY_NAME: wilsonm/github-cli
+  NODE_CI_DOCKER_TAG: ${{ vars.NODE_CI_DOCKER_TAG }}
 
 jobs:
   build:
