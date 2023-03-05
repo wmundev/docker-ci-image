@@ -7,6 +7,10 @@ on:
     - cron: '0 8 * * 6'
   workflow_dispatch:
 
+env:
+  GH_CLI_DOCKER_TAG: latest
+  REPOSITORY_NAME: wilsonm/github-cli
+
 jobs:
 
   build:
@@ -17,11 +21,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build and publish github-cli
       run: |
-        export REPOSITORY_NAME=wilsonm/github-cli
-        export TAG=latest
-        docker build --tag ${REPOSITORY_NAME}:${TAG} -f github-cli-docker/Dockerfile .
+        docker build --tag ${REPOSITORY_NAME}:${GH_CLI_DOCKER_TAG} -f github-cli-docker/Dockerfile .
         echo "$DOCKER_PASSWORD" | docker login -u="${DOCKER_USERNAME}" --password-stdin
-        docker push ${REPOSITORY_NAME}:${TAG}
+        docker push ${REPOSITORY_NAME}:${GH_CLI_DOCKER_TAG}
         docker logout
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
