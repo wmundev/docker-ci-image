@@ -23,7 +23,7 @@ jobs:
         docker build --tag ${REPOSITORY_NAME}:${GH_CLI_DOCKER_TAG} -f github-cli-docker/Dockerfile .
         # Test to ensure docker image works correctly
         docker run --name ${TEST_DOCKER_CONTAINER_NAME} -d -i -t ${REPOSITORY_NAME}:${GH_CLI_DOCKER_TAG}
-        docker exec -it ${TEST_DOCKER_CONTAINER_NAME} aws --version
+        docker exec ${TEST_DOCKER_CONTAINER_NAME} aws --version
         docker rm ${TEST_DOCKER_CONTAINER_NAME} --force
         # End of test
         echo "$DOCKER_PASSWORD" | docker login -u="${DOCKER_USERNAME}" --password-stdin
