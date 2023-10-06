@@ -3,7 +3,7 @@
 # To use git, use `git`
 FROM amazon/aws-cli:latest
 
-RUN yum update
+RUN yum update -y
 RUN yum install git -y
 
 # Install github cli
