@@ -18,3 +18,4 @@ RUN aws --version # Make sure aws cli is installed correctly
 RUN gh --version # Make sure gh cli is installed correctly
 RUN git --version # Make sure git is installed correctly
 
+ENTRYPOINT ["/bin/sh -c"]
