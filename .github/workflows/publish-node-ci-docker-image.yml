@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build and publish wilsonm/node-ci
       run: |
         docker build --tag ${REPOSITORY_NAME}:${NODE_CI_DOCKER_TAG} -f node-ci/Dockerfile .
