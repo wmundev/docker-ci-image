@@ -7,7 +7,7 @@ RUN yum update -y
 RUN yum install git -y
 
 # Install github cli
-ENV GH_VERSION=2.48.0
+ENV GH_VERSION=2.50.0
 RUN curl -v -O https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.rpm -L
 RUN rpm -i gh_${GH_VERSION}_linux_amd64.rpm
 RUN rm -rf gh_${GH_VERSION}_linux_amd64.rpm
