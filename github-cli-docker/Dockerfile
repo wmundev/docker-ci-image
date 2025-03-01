@@ -1,7 +1,7 @@
 # To use gh cli, use `gh`
 # To use aws cli, use `aws`
 # To use git, use `git`
-FROM amazon/aws-cli:2.23.11
+FROM amazon/aws-cli:2.24.15
 
 RUN yum update -y
 RUN yum install git -y
